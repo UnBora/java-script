@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Window Object Testing</title>
+</head>
+<body>
+    <h1>Testing the JavaScript Window Object</h1>
+    
+    <!-- Buttons to trigger different window object methods -->
+    <button id="alertBtn">Show Alert</button>
+    <button id="confirmBtn">Show Confirm</button>
+    <button id="promptBtn">Show Prompt</button>
+    <button id="openWindowBtn">Open New Window</button>
+    <button id="closeWindowBtn">Close New Window</button>
+    <button id="screenInfoBtn">Show Screen Info</button>
+    
+    <p id="result"></p>
+
+    <script>
+        // Event listeners for buttons
+
+        // Alert box
+        document.getElementById("alertBtn").onclick = function() {
+            window.alert("This is an alert box!");
+        };
+
+        // Confirm box
+        document.getElementById("confirmBtn").onclick = function() {
+            const userConfirmed = window.confirm("Do you confirm this?");
+            document.getElementById("result").textContent = "User clicked: " + (userConfirmed ? "OK" : "Cancel");
+        };
+
+        // Prompt box
+        document.getElementById("promptBtn").onclick = function() {
+            const userInput = window.prompt("Please enter your name:", "John Doe");
+            document.getElementById("result").textContent = "User input: " + userInput;
+        };
+
+        // Open a new window
+        let newWindow;
+        document.getElementById("openWindowBtn").onclick = function() {
+            newWindow = window.open("https://www.example.com", "_blank", "width=500,height=500");
+        };
+
+        // Close the new window
+        document.getElementById("closeWindowBtn").onclick = function() {
+            if (newWindow) {
+                newWindow.close();
+                document.getElementById("result").textContent = "New window closed.";
+            } else {
+                document.getElementById("result").textContent = "No window to close.";
+            }
+        };
+
+        // Display screen information
+        document.getElementById("screenInfoBtn").onclick = function() {
+            const screenInfo = `
+                Screen Width: ${window.screen.width}px,
+                Screen Height: ${window.screen.height}px,
+                Available Width: ${window.screen.availWidth}px,
+                Available Height: ${window.screen.availHeight}px,
+                Color Depth: ${window.screen.colorDepth} bits,
+                Pixel Depth: ${window.screen.pixelDepth} bits
+            `;
+            document.getElementById("result").textContent = screenInfo;
+        };
+    </script>
+</body>
+</html>

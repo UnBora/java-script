@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Window Navigator Example</title>
+  </head>
+  <body>
+    <h1>JavaScript Window Navigator Example</h1>
+
+    <button id="getInfoBtn">Get Browser Info</button>
+    <button id="checkOnlineBtn">Check Online Status</button>
+    <button id="getLocationBtn">Get Location</button>
+
+    <p id="info"></p>
+    <p id="status"></p>
+    <p id="location"></p>
+
+    <script>
+      // Display various information about the browser
+      document.getElementById("getInfoBtn").onclick = function () {
+        const info = `
+                Browser Name: ${navigator.appName} <br>
+                Browser Version: ${navigator.appVersion} <br>
+                User Agent: ${navigator.userAgent} <br>
+                Platform: ${navigator.platform} <br>
+                Language: ${navigator.language} <br>
+                Cookies Enabled: ${navigator.cookieEnabled}
+            `;
+        document.getElementById("info").innerHTML = info;
+      };
+
+      // Check if the browser is online or offline
+      document.getElementById("checkOnlineBtn").onclick = function () {
+        const status = navigator.onLine ? "Online" : "Offline";
+        document.getElementById("status").textContent = "Browser is: " + status;
+      };
+
+      // Get the user's current location (requires user permission)
+      document.getElementById("getLocationBtn").onclick = function () {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            function (position) {
+              const location = `
+                        Latitude: ${position.coords.latitude} <br>
+                        Longitude: ${position.coords.longitude}
+                    `;
+              document.getElementById("location").innerHTML = location;
+            },
+            function (error) {
+              document.getElementById("location").textContent =
+                "Unable to retrieve location: " + error.message;
+            }
+          );
+        } else {
+          document.getElementById("location").textContent =
+            "Geolocation is not supported by this browser.";
+        }
+      };
+    </script>
+  </body>
+</html>

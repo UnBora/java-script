@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Window Location Example</title>
+</head>
+<body>
+    <h1>JavaScript Window Location Example</h1>
+    <button id="getUrlBtn">Get Current URL</button>
+    <button id="redirectBtn">Go to Example.com</button>
+    <button id="replaceBtn">Replace with Example.com</button>
+    <button id="reloadBtn">Reload Page</button>
+    
+    <p id="urlInfo"></p>
+    
+    <script>
+        // Get and display the current URL
+        document.getElementById("getUrlBtn").onclick = function() {
+            const urlInfo = `
+                Full URL: ${window.location.href} <br>
+                Hostname: ${window.location.hostname} <br>
+                Pathname: ${window.location.pathname} <br>
+                Protocol: ${window.location.protocol} <br>
+                Port: ${window.location.port} <br>
+                Search: ${window.location.search} <br>
+                Hash: ${window.location.hash}
+            `;
+            document.getElementById("urlInfo").innerHTML = urlInfo;
+        };
+
+        // Redirect to example.com
+        document.getElementById("redirectBtn").onclick = function() {
+            window.location.href = "https://www.example.com";
+        };
+
+        // Replace the current page with example.com
+        document.getElementById("replaceBtn").onclick = function() {
+            window.location.replace("https://www.example.com");
+        };
+
+        // Reload the current page
+        document.getElementById("reloadBtn").onclick = function() {
+            window.location.reload(); // To force reload from server: window.location.reload(true);
+        };
+    </script>
+</body>
+</html>

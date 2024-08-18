@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript History Object Example</title>
+</head>
+<body>
+    <h1>JavaScript Window History Example</h1>
+    <button id="backBtn">Go Back</button>
+    <button id="forwardBtn">Go Forward</button>
+    <button id="reloadBtn">Reload Page</button>
+    <button id="pushStateBtn">Push State</button>
+    <button id="replaceStateBtn">Replace State</button>
+    
+    <p id="historyLength"></p>
+    <p id="currentState"></p>
+    
+    <script>
+        // Go back in history
+        document.getElementById("backBtn").onclick = function() {
+            window.history.back();
+        };
+        
+        // Go forward in history
+        document.getElementById("forwardBtn").onclick = function() {
+            window.history.forward();
+        };
+        
+        // Reload the current page
+        document.getElementById("reloadBtn").onclick = function() {
+            window.history.go(0); // Reloads the page
+        };
+        
+        // Push a new state to the history
+        document.getElementById("pushStateBtn").onclick = function() {
+            window.history.pushState({ page: 1 }, "New Page", "/new-page");
+            document.getElementById("currentState").textContent = "New state pushed!";
+        };
+        
+        // Replace the current state in the history
+        document.getElementById("replaceStateBtn").onclick = function() {
+            window.history.replaceState({ page: 2 }, "Replaced Page", "/replaced-page");
+            document.getElementById("currentState").textContent = "State replaced!";
+        };
+        
+        // Display the history length
+        document.getElementById("historyLength").textContent = "History length: " + window.history.length;
+    </script>
+</body>
+</html>
